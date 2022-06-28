@@ -386,7 +386,7 @@ const number = 0;
 return number && <div>내용</div>;
 ```
 
-- falsy 한 값인 0은 예외적으로 화면에 나타난다는 점 주의할 것!
+- null 과 같은 falsy 한 값이라면 원래 아무것도 출력되지 않는데, 0 만 예외적으로 0 이 출력된다는 점 주의할 것!
   <Br>
 
 ### **5. undefined 를 렌더링하지 않기**
