@@ -849,7 +849,7 @@ let nextArray = array.concat({ id : 4 });   // 새 항목 추가
 nextArray.filter(item => item.id !== 2);    // id 가 2인 항목 제거
 
 // id 가 1인 항목의 value 를 false 로 설정
-nextArray.map(item => (item.id === 1 ? { ...item, value : false }));
+nextArray.map(item => (item.id === 1 ? { ...item, value : false } : item));
 ```
 
 - **배열/객체를 업데이트해야 할 때는 사본을 만들어두고, 그 사본에 값을 업데이트한 후 setState 혹은 세터 함수를 통해 사본의 상태를 업데이트해야 함.**
