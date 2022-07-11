@@ -286,7 +286,7 @@ class ScrollBox extends Component {
     */
 
 		// 맨 아래로 스크롤을 내리려면 scrollHeight 에서 clientHeight 높이를 빼주면 됨.
-		this.box.clientHeight = scrollHeight - clientHeight;
+		this.box.scrollTop = scrollHeight - clientHeight;
 	};
 
 	render() {
