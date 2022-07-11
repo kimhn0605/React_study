@@ -101,7 +101,7 @@ export default App;
 #### 1) 콜백 함수를 통한 ref 설정
 
 ```jsx
-<input ref={{ref} => {this.input=ref}} />
+<input ref={(ref) => {this.input=ref}} />
 ```
 
 - ref 를 달고자 하는 요소에 ref 라는 콜백 함수를 props 로 전달
