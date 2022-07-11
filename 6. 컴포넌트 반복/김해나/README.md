@@ -3,7 +3,7 @@
 ## 6.1 자바스크립트 배열의 map() 함수
 
 ```jsx
-arr.map(callback, [thisArh]);
+arr.map(callback, [thisArg]);
 ```
 
 - **반복되는 컴포넌트를 렌더링할 때 내장 함수 map 함수 이용**
