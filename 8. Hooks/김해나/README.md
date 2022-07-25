@@ -271,7 +271,7 @@ export default App;
 
 <br>
 
-![image](https://user-images.githubusercontent.com/77706631/179503070-8a83b918-0fc8-4e7d-8da1-2606def05e3c.png)
+![image](https://user-images.githubusercontent.com/77706631/180723432-784a47f3-c049-47f5-81e5-3c664c9ec1a4.png)
 
 <Br>
 
@@ -291,8 +291,8 @@ useEffect(() => {
 ```
 
 - useEffect 함수의 2번째 파라미터에 비어 있는 배열을 넣으면 됨.
-
-<br>
+  - 입력값 변화에 상관없이 버튼 클릭 시에만 뒷정리 함수 실행
+    <br>
 
 ### 🔍 실행 화면
 
@@ -379,6 +379,7 @@ export default Counter;
   - state 는 현재 가리키고 있는 상태
   - dispatch 는 액션을 발생시키는 함수
     - dispatch(action) 과 동일한 형태로, 함수 안에 파라미터로 액션 값을 넣어 주면 리듀서 함수가 호출되는 구조
+    - dispatch({...}) 의 파라미터인 객체가 reducer 함수의 action 인자로 들어가게 됨.
       <br>
 
 ### 🔍 실행 화면
@@ -502,8 +503,33 @@ export default Average;
 ```
 
 - 리스트에 숫자를 추가하면 추가된 숫자들의 평균을 계산해서 보여주는 함수형 컴포넌트
-- 하지만 인풋 내용이 수정될 때도 getAverage 함수가 호출되어 평균값이 계산되는 것을 알 수 있음.
+- 하지만 인풋 내용이 수정될 때도 getAverage 함수가 호출되어 불필요하게 평균값이 계산되는 것을 알 수 있음.
   <br>
+
+#### ※ reduce() 함수
+
+```js
+arr.reduce(callback[, initialValue])
+```
+
+- `callback function`
+  - callback 함수의 반환 값은 accumulator 에 할당되고, 순회하며 계속 누적되어 최종적으로 하나의 값을 반환하며, 아래 4가지 인자를 가짐.
+    - `accumulator `
+      - callback 함수의 반환값을 누적
+    - `currentValue `
+      - 배열의 현재 요소
+    - `index(Optional)`
+      - 배열의 현재 요소의 인덱스
+    - `array(Optional)`
+      - 호출한 배열
+
+<br>
+
+- `initialValue (Optional)`
+  - 최초 callback 함수 실행 시 accumulator 인수에 제공되는 값
+  - 초기값을 제공하지 않을 경우 배열의 첫 번째 요소를 사용하고,
+    - 빈 배열에서 초기값이 없을 경우 에러 발생
+      <br>
 
 ### 🔍 실행 화면
 
@@ -562,7 +588,23 @@ export default Average;
 
 - useMemo Hook 을 사용하여 렌더링
   - 특정 값이 바뀌었을 때만 연산을 수행하고, 원하는 값이 바뀌지 않았다면 이전에 연산했던 결과를 다시 사용하는 방식
-  - list 배열의 내용이 바뀔 때만 getAverage 함수 호출
+  - list 배열의 내용이 바뀔 때만 getAverage 함수 호출하여 평균값 반환
+    <br>
+
+#### ※ useMemo
+
+```jsx
+useMemo(func, array);
+```
+
+- `func`
+
+  - 어떻게 연산할 지 정의하는 함수
+    <br>
+
+- `array`
+  - 배열 안에 내용이 바뀔 때만 func 인자에 등록한 함수를 호출하여 값 연산
+  - 값이 바뀌지 않으면 이전에 연산한 값을 재사용
     <br>
 
 ### 🔍 실행 화면
@@ -629,16 +671,34 @@ export default Average;
 - 위에서 useMemo 로 구현했던 Average 컴포넌트에서는 리렌더링될 때마다 새로 만들어진 함수 (onChange, onInsert) 를 사용
   - 컴포넌트의 렌더링이 자주 발생하거나 렌더링해야 할 컴포넌트 개수가 많아지면 최적화해주는 것이 좋음.
     <br>
-- useCallback 의 첫 번째 파라미터에는 생성하고 싶은 함수를 넣고, 두 번째 파라미터에는 배열을 넣음.
 
-  - 이 배열에는 어떤 값이 바뀌었을 때 함수를 새로 생성해야 하는지 그 값을 명시해야 함.
+#### ※ useCallback
+
+```jsx
+useCallback(func, array);
+```
+
+- `func`
+
+  - 생성하고 싶은 함수
     <br>
 
-- 함수 내부에서 상태 값에 의존해야 할 때는 그 값을 반드시 두 번째 파라미터 안에 포함시켜줘야 함.
-  - onChange 경우 기존의 값을 조회하지 않고 바로 설정만 하기 때문에 배열이 비어 있어도 상관 X
-  - onInsert 경우 기존의 number 와 list 를 조회해서 nextList 를 생성하기 때문에 배열 안에 number 와 list 를 꼭 넣어줘야 함.
+- `array`
+  - 이 배열에는 어떤 값이 바뀌었을 때 함수를 새로 생성해야 하는지 그 값을 명시해야 함.
+  - 함수 내부에서 상태 값에 의존해야 할 때는 그 값을 반드시 두 번째 파라미터 안에 포함시켜줘야 함.
+    - onChange 경우 기존의 값을 조회하지 않고 바로 설정만 하기 때문에 배열이 비어 있어도 상관 X
+    - onInsert 경우 기존의 number 와 list 를 조회해서 nextList 를 생성하기 때문에 배열 안에 number 와 list 를 꼭 넣어줘야 함.
 
 <br>
+
+#### ※ useMemo / useCallback 차이점
+
+- `useMemo`
+  - 특정 결과값을 재사용
+    <br>
+- `useCallback`
+  - 특정 함수를 재사용
+    <br>
 
 ## 8.6 useRef
 
@@ -696,7 +756,17 @@ export default Average;
 ```
 
 - '등록' 버튼을 눌렀을 때 포커스가 인풋 쪽으로 넘어가도록 코드 작성
-- useRef 를 사용하여 ref 를 설정하면 useRef 를 통해 만든 객체 안의 current 값이 실제 엘리먼트를 가리킴.
+  - useRef 를 사용하여 ref 를 설정하면 useRef 를 통해 만든 객체 안의 current 값이 실제 엘리먼트를 가리킴.
+
+<br>
+
+#### ※ useRef 용도
+
+1. 컴포넌트에서 특정 DOM 선택
+2. 컴포넌트 내에서 조회/수정할 수 있는 변수 관리
+3. useRef로 관리되는 변수는 값이 바뀌어도 컴포넌트 리렌더링 X
+   - useRef() 의 파라미터를 통해 `.current` 의 기본값 지정 가능
+   - 값 수정/조회 시 `.current` 사용
 
 <br>
 
@@ -711,6 +781,7 @@ export default Average;
 ## 8.7 커스텀 Hooks 만들기
 
 - 여러 컴포넌트에서 비슷한 기능을 공유할 경우, 이를 자신만의 Hooks 로 작성하여 로직 재사용 가능
+  - 아래 예시는 useReducer 로 작성했던 로직을 useInputs 라는 Hook 으로 따로 분리한 코드
 
 <br>
 
