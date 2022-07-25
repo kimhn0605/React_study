@@ -465,7 +465,7 @@ import React, { useState } from "react";
 const getAverage = (numbers) => {
 	console.log("평균값 계산 중..");
 	if (numbers.length === 0) return 0;
-	const sum = numbers.reduce((a, b) => a + b);
+	const sum = numbers.reduce((prev, cur) => prev + cur, 0);
 	return sum / numbers.length;
 };
 
