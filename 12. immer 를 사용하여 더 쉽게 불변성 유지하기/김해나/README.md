@@ -1,10 +1,6 @@
 # 12. immer 를 사용하여 더 쉽게 불변성 유지하기
 
-<br>
-
 ## 12.1 immer 를 설치하고 사용법 알아보기
-
-<br>
 
 ### 12.1.1 프로젝트 준비
 
@@ -132,6 +128,7 @@ export default App;
 
 ```jsx
 import produce from "immer";
+
 const nextState = produce(originalState, (draft) => {
 	// 바꾸고 싶은 값 변경
 	draft.somewhere.deep.inside = 5;
@@ -140,7 +137,8 @@ const nextState = produce(originalState, (draft) => {
 
 - produce 함수는 2가지 파라미터를 가짐.
   - `originalState` : 수정하고 싶은 상태
-  - `draft` : 상태를 어떻게 업데이트할지 정의하는 함수 - draft 함수 내부에서 원하는 값을 변경하면, produce 함수가 불변성 유지를 대신해 주면서 새로운 상태를 생성
+  - `draft` : 상태를 어떻게 업데이트할지 정의하는 함수 
+  	- draft 함수 내부에서 원하는 값을 변경하면, produce 함수가 불변성 유지를 대신해 주면서 새로운 상태를 생성
     <Br>
 
 #### 12.1.4 App 컴포넌트에 immer 적용하기
