@@ -12,7 +12,7 @@ import TodoTemplate from './TodoTemplate';
 
 function createBulkTodos() {
   const array = [];
-  for (let i = 0; i <= 2500; i++) {
+  for (let i = 1; i <= 2500; i++) {
     array.push({
       id: 1,
       text: `할 일 ${i}`,
