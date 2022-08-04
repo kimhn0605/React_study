@@ -206,7 +206,7 @@ const App = () => {
   - setTodos 사용 시 `todos =>` 만 앞에 넣어주면 됨.
     <Br>
 
-### 11.5.2 useRedecer
+### 11.5.2 useReducer
 
 `App.js`
 
