@@ -12,7 +12,7 @@ import TodoTemplate from './TodoTemplate';
 
 function createBulkTodos() {
   const array = [];
-  for (let i = 0; i <= 2500; i++) {
+  for (let i = 1; i <= 2500; i++) {
     array.push({
       id: 1,
       text: `할 일 ${i}`,
@@ -206,7 +206,7 @@ const App = () => {
   - setTodos 사용 시 `todos =>` 만 앞에 넣어주면 됨.
     <Br>
 
-### 11.5.2 useRedecer
+### 11.5.2 useReducer
 
 `App.js`
 
