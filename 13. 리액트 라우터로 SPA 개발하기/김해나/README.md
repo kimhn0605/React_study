@@ -749,7 +749,7 @@ const Profile = ({ match }) => {
 	);
 };
 
-export default Profile;
+export default withRouter(Profile);
 ```
 
 - WithRouterSample 컴포넌트를 Profiles 에서 지우고,
