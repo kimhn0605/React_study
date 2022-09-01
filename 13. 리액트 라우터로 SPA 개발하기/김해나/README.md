@@ -421,7 +421,9 @@ export default About;
 ```
 
 - 쿼리 문자열을 객체로 파싱하면 결과 값은 언제나 문자열
-  - 숫자나 논리 자료형도 "1", "true" 와 같이 문자열 형태로 받아짐. - 숫자를 받아 와야 하면 parseInt 함수를 통해 반드시 숫자로 변환 - 논리 자료형 값을 사용해야 한다면 "true" 또는 "false" 문자열과 일치하는지 비교
+  - 숫자나 논리 자료형도 "1", "true" 와 같이 문자열 형태로 받아짐. 
+  - 숫자를 받아 와야 하면 parseInt 함수를 통해 반드시 숫자로 변환 
+  - 논리 자료형 값을 사용해야 한다면 "true" 또는 "false" 문자열과 일치하는지 비교
     <br>
 
 ### 🔍 실행 화면
@@ -459,7 +461,7 @@ const Profiles = () => {
 				</li>
 			</ul>
 
-			<Route path='/profiles' exactrender={() => <div>사용자를 선택해주세요</div>} />
+			<Route path='/profiles' exact render={() => <div>사용자를 선택해주세요</div>} />
 			<Route path='/profiles/:username' component={Profile} />
 		</div>
 	);
@@ -874,7 +876,7 @@ const Profiles = () => {
 				</li>
 			</ul>
 
-			<Route path='/profiles' exactrender={() => <div>사용자를 선택해주세요</div>} />
+			<Route path='/profiles' exact render={() => <div>사용자를 선택해주세요</div>} />
 			<Route path='/profiles/:username' component={Profile} />
 			<WithRouterSample />
 		</div>
