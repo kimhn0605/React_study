@@ -319,7 +319,7 @@ export default SelectColors;
 ```
 
 - Context 의 actions 에 넣어 준 함수를 호출하는 컴포넌트 생성
-- <br>
+<br>
 
 `App.js`
 
@@ -497,7 +497,7 @@ class SelectColors extends Component {
 									onClick={() => this.handleSetColor(color)}
 									onContextMenu={(e) => {
 										e.preventDefault(); // 마우스 오른쪽 버튼 클릭 시 메뉴 뜨는 것을 무시
-										actions.handleSetSubcolor(color);
+										this.handleSetSubcolor(color);
 									}}
 								/>
 							))}
